@@ -5,7 +5,7 @@ This app allows users to add, view, edit, search, and delete contacts — just l
 Each user has their own secure account and contact list.
 
 
-# 🚀 Features
+## 🚀 Features
 
 🧾 Add New Contacts – Name, phone number, email, address, and photo.
 📋 View All Contacts – Display contacts in a clean card or table layout.
@@ -19,21 +19,20 @@ Each user has their own secure account and contact list.
 
 # 🛠️ Tech Stack
 
-# Frontend:
-HTML, CSS, Bootstrap / Tailwind
-
-# Backend:
+### Frontend:
+HTML, CSS, JavaScripts
+### Backend:
 Python, Django
 
-# Database:
+## Database:
 SQLite (development)
 
-# Hosting:
+## Hosting:
 Render
 
 
 # 🔒 Authentication
 
-Users must log in to manage contacts.
-New users can sign up easily from the registration page.
-Each user’s data is private and secure.
+- Users must log in to manage contacts.
+- New users can sign up easily from the registration page.
+- Each user’s data is private and secure.
