@@ -56,6 +56,11 @@ header .head{
     text-align: center;
 }
 
+.head .signup button:hover{
+    background-color: blue;
+    color: red;
+}
+
 
 .head .signup button a{
     text-decoration:none;
@@ -123,6 +128,8 @@ header .head{
     cursor: pointer;
     text-align: center;
     transition: 0.3s;
+    background-color: red;
+    color: white
 }
 
 .popup_box form .btn:active{
@@ -190,6 +197,8 @@ header .head{
     cursor: pointer;
     text-align: center;
     transition: 0.3s;
+    background-color: red;
+    color: white
 }
 
 .login_popup_box form .btn:active{
