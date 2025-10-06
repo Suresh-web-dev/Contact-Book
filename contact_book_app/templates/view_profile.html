@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'view_profile.css' %}">
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="img_contain">
+            {% if contact.image %}
+                <img src="{{ contact.image.url }}" alt="{{ contact.name }}">
+            {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="default profile">
+            {% endif %}
+        </div>
+
+        <div class="details">
+            <div class="content_contain">
+                <h1>{{ contact.name }}</h1>
+                <p>{{ contact.phone_number }}</p>
+                <p>{{ contact.email }}</p>
+                <p>{{ contact.address }}</p>
+            </div>
+    
+            <div class="buttons">
+                <a href="/delete_contact/{{contact.id}}/"><button class="delete_btn">Delete</button></a>
+                <a href="#"><button class="edit_btn" id="edit_btn">Edit</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-------------------------  Edit Contact  ------------------------->
+
+
+    <div class="edit_overlay" id="edit_overlay"></div>
+
+    <div class="edit_popup" id="edit_popup">
+        <form action="/edit_contact/{{contact.id}}/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <h1>Edit Contact</h1>
+
+            {% if contact.image %}
+                <img src="{{ contact.image.url }}" alt="{{ contact.name }}" width="100">
+            {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="default profile" class="profile_pic">
+            {% endif %}
+           
+            <input type="file" name="new_image">
+            <input type="text" name="new_name" id="new_name" value="{{contact.name}}">
+            <input type="number" name="new_phone_number" id="new_phone_number" value="{{contact.phone_number}}">
+            <input type="email" name="new_email" id="new_email" value="{{contact.email}}">
+            <input type="text" name="new_address" id="new_address" value="{{contact.address}}">
+
+            <input type="submit" value="Save" id="save_btn">
+        </form>
+    </div>
+
+    
+{% endblock content %}
+
+
+
+{% block scripts %}
+
+
+
+    <script>
+
+        let edit_overlay = document.getElementById("edit_overlay");
+        let edit_popup = document.getElementById("edit_popup");
+        let edit_btn = document.getElementById("edit_btn");
+
+        
+        edit_btn.addEventListener("click", (event) => {
+            edit_overlay.style.display = "block"
+            edit_popup.style.display = "block"
+        });
+
+        edit_overlay.addEventListener("click", (event) => {
+            edit_overlay.style.display = "none"
+            edit_popup.style.display = "none"
+        });
+
+    </script>
+
+
+{% endblock scripts %}
+</body>
+</html>

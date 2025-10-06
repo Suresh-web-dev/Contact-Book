@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'navigation.css' %}">
+    
+</head>
+<body>
+
+
+    <header>
+        <div class="head">
+            <h1>Contact Book</h1>
+
+            <div class="signup">
+                <button id="log_show">Login</button>
+
+                {% if request.user.is_authenticated %}
+                <form action="/logout_view/" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+                {% else %}
+                    <button id="sign_show">Sign Up</button>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-----------------   signup section     -------------------->
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup_box" id="popup_box">
+        <form action="/signup_view/" method="POST">
+            {% csrf_token %}
+
+            <h1>Sign Up</h1>
+
+            <input type="text" placeholder="Username" name="username">
+            <input type="email" placeholder="Email" name="email">
+            <input type="password" placeholder="Password" name="password">
+            <input type="password" placeholder="Confirm Password" name="confirm_password">
+            <input type="submit" value="Sign Up" class="btn">
+
+        </form>
+    </div>
+
+
+<!-----------------   login section     -------------------->
+
+    <div class="login_overlay" id="login_overlay"></div>
+    
+    <div class="login_popup_box" id="login_popup_box">
+        <form action="/login_view/" method="POST">
+            {% csrf_token %}
+    
+            <h1>Login</h1>
+    
+            <input type="text" placeholder="Username" name="username">
+            <input type="password" placeholder="Password" name="password">
+            <input type="submit" value="Login" class="btn">
+
+            
+    
+        </form>
+    </div>
+
+
+<!-----------------   contact navigation section     -------------------->
+
+
+    <div class="contact_nav">
+        <div class="contact_menu" id="contact_menu">
+            <ul>
+                <a href="/index/"><li>Contact</li></a>
+                <a href="/add_contact/"><li>Add Contact</li></a>
+            </ul>
+        </div>
+    </div>
+
+
+
+<script>
+    
+    /*-----------------   login section     --------------------*/
+
+        let sign_show = document.getElementById("sign_show");
+        let overlay = document.getElementById("overlay");
+        let popup_box = document.getElementById("popup_box")
+
+        sign_show.addEventListener("click", (event) => {
+            overlay.style.display = "block"
+            popup_box.style.display = "block"
+        });
+
+        overlay.addEventListener("click", (event) => {
+            overlay.style.display = "none"
+            popup_box.style.display = "none"
+        });
+
+
+    /*-----------------   login section     --------------------*/
+
+
+        let log_show = document.getElementById("log_show");
+        let login_overlay = document.getElementById("login_overlay");
+        let login_popup_box = document.getElementById("login_popup_box")
+
+        log_show.addEventListener("click", (event) => {
+            login_overlay.style.display = "block"
+            login_popup_box.style.display = "block"
+        });
+
+        login_overlay.addEventListener("click", (event) => {
+            login_overlay.style.display = "none"
+            login_popup_box.style.display = "none"
+        });
+
+
+    </script>
+</body>
+</html>

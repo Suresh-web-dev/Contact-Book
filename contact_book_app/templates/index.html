@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock title %}
+
+
+{% block content %}
+
+<!-----------------   contact navigation section     -------------------->
+<div class="contact_container">
+
+    <form action="/search/" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" id="search" placeholder="Search">
+        <input type="submit" value="Search" id="search_btn">
+    </form>
+
+    {% if contacts %}
+        {% for contact in contacts %}
+            <a href="/view_profile/{{contact.id}}/">
+                <div class="contact_box">
+                    {% if contact.image %}
+                        <img src="{{ contact.image.url }}" alt="{{ contact.name }}" class="profile_pic">
+                    {% else %}
+                        <img src="{% static 'images/profile.png' %}" alt="default profile" class="profile_pic">
+                    {% endif %}
+
+                    <div class="content">
+                        <h2>{{contact.name}}</h2>
+                        <p>{{contact.phone_number}}</p>
+                    </div>
+
+                    <div class="address_sec">
+                        <h3>{{contact.email}}</h3>
+                        <h3>{{contact.address}}</h3>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    
+
+    {% elif error %}
+        <p class="error">{{ error }}</p>
+
+    
+    {% else %}
+        {% for contact in contact_list %}
+            <a href="/view_profile/{{contact.id}}/">
+                <div class="contact_box">
+                    {% if contact.image %}
+                        <img src="{{ contact.image.url }}" alt="{{ contact.name }}" class="profile_pic">
+                    {% else %}
+                        <img src="{% static 'images/profile.png' %}" alt="default profile" class="profile_pic">
+                    {% endif %}
+
+                    <div class="content">
+                        <h2>{{contact.name}}</h2>
+                        <p>{{contact.phone_number}}</p>
+                    </div>
+
+                    <div class="address_sec">
+                        <h3>{{contact.email}}</h3>
+                        <h3>{{contact.address}}</h3>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+{% endblock content %}
