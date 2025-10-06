@@ -54,6 +54,7 @@ header .head{
     border: none;
     cursor: pointer;
     text-align: center;
+    transition: 0.3s;
 }
 
 .head .signup button:hover{
@@ -128,7 +129,7 @@ header .head{
     cursor: pointer;
     text-align: center;
     transition: 0.3s;
-    background-color: red;
+    background-color: blue;
     color: white
 }
 
@@ -197,7 +198,7 @@ header .head{
     cursor: pointer;
     text-align: center;
     transition: 0.3s;
-    background-color: red;
+    background-color: blue;
     color: white
 }
 
